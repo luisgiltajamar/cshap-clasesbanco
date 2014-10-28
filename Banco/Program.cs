@@ -10,20 +10,39 @@ namespace Banco
     {
         static void Main(string[] args)
         {
+            var carr = new Cuenta[3];
 
+            carr[0] = CrearCuentaConsola();
+            carr[1] = CrearCuentaConsola();
+            carr[2] = new CuentaAhorro("Maria", 5000, true, 0.02);
 
-            var cc = CrearCuentaConsola();
-            var cc2 = CrearCuentaConsola();
-            var ca = new CuentaAhorro("Maria", 5000, true, 0.02);
+            //Console.WriteLine(cc.Sacar(2000));
+            //Console.WriteLine(cc2.Sacar(4000));
+            //Console.WriteLine(ca.Sacar(2000));
 
-            Console.WriteLine(cc.Sacar(2000));
-            Console.WriteLine(cc2.Sacar(4000));
-            Console.WriteLine(ca.Sacar(2000));
+            foreach (var cuenta in carr)
+            {
+                cuenta.Detalles();
 
+                if(cuenta is CuentaAhorro)
+                    Console.WriteLine("Soy de ahorro");
+            }
+            
+            Console.ReadLine();
 
-            cc.Detalles();
-            cc2.Detalles();
-            ca.Detalles();
+            Cuenta cap = new CuentaAhorro();
+            Cuenta cp=new CuentaCorriente("Pepe",3000,true,25000);
+
+          
+
+            CuentaCorriente cpc = (CuentaCorriente) cp;
+
+              Console.WriteLine(((CuentaCorriente)cp).Limite);
+
+            cp.Detalles();
+
+            CuentaCorriente cpn =  cap as CuentaCorriente;
+
 
             Console.ReadLine();
         }
